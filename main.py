@@ -1,83 +1,39 @@
-# Mr Jones Sample Code
-# This code is a simple user authentication system that allows users to register and login.
-# It uses a CSV file to store user credentials and bcrypt for password hashing.
-import csv
-import sys
-import bcrypt
+def logged():
+    geek = int(input("1.Change password " "2.Log out "))
+    if geek == 1:
+        change = input("what you finna change it to? ")
+        print("Your password", (change), "has been confirmed")
+    if geek == 2:
+        print("Logged out")
 
 
-# Salt to add to password before Hashing
-salt = b"$2b$12$ieYNkQp8QumgedUo30nuPO"
 
+menu = int(input("1.Login " "2.Register " "3.Quit "))
 
-# Salt & Hash the password
-def hash_password(password):
-    return bcrypt.hashpw(password.encode(), salt=salt).decode()
-
-
-# Check if the password matches the hash
-def check_password(password, hashed):
-    return bcrypt.checkpw(password.encode(), hashed.encode())
-
-
-# Load accounts from the CSV file
-def load_accounts():
-    try:
-        with open("source.csv", "r") as file:
-            return list(csv.DictReader(file))
-    except FileNotFoundError:
-        return []
-
-
-# Save a new account to the CSV file
-def save_account(username, password):
-    with open("source.csv", "a") as file:
-        writer = csv.DictWriter(file, fieldnames=["username", "password"])
-        writer.writerow({"username": username, "password": hash_password(password)})
-
-
-# Register a new user
-def register():
-    username = input("Enter Username: ").strip()
-    password = input("Enter Password: ").strip()
-    if len(password) < 4:
-        print("Password must be at least 4 characters long.")
-        return
-    accounts = load_accounts()
-    for account in accounts:
-        if account["username"] == username:
-            print("Username already exists.")
-            return
-    save_account(username, password)
-    print("Registration successful!")
-
-
-# Login a user
-def login():
-    username = input("Username? ").strip()
-    password = input("Password? ").strip()
-    accounts = load_accounts()
-    for account in accounts:
-        if account["username"] == username and check_password(password, account["password"]):
-            print("Valid Confirmation!")
-            return
-    print("Invalid username or password.")
-
-
-# Main function
-def main():
-    while True:
-        user = input("1. Login, 2. Register, 3. Quit: ").strip().lower()
-        if user == "1" or user == "login":
-            login()
-        elif user == "2" or user == "Register":
-            register()
-        elif user == "3" or user == "Quit":
-            print("Goodbye!")
-            sys.exit()
+if menu == 1:
+    LogUs = input("Username? ")
+    while LogUs == ("sithLord") or LogUs == ("d_Vader") or LogUs == ("GENERALleia") or LogUs == ("grogu") or LogUs == ("there_is_no_try") or LogUs == ("MyRey") or LogUs == ("Luke"):
+        LogPa = input("Password? ")
+        while LogPa == ("Ancient enimes r us") or LogPa == ("I'm Your Father") or LogPa == ("May the Force be with you") or LogPa == ("patu") or LogPa == ("Yoda") or LogPa == ("I Am All The Jedi") or LogPa == ("May the Force be with you"):
+            print("Logged in!")
+            logged()
         else:
-            print("Invalid option. Please try again.")
+            print("WRONG")
+    else:
+        print("WRONG")
+
+elif menu == 2:
+    RegUs = input("Username? ")
+    if RegUs == ("sithLord") or RegUs == ("d_Vader") or RegUs == ("GENERALleia") or RegUs == ("grogu") or RegUs == ("there_is_no_try") or RegUs == ("MyRey") or RegUs == ("Luke"):
+        print("Taken")
+    elif input("Password? "):
+        print("Okay!")
+        logged()
 
 
-if __name__ == "__main__":
-    main()
+
+
+elif menu == 3:
+    print("Terminated")
+
+    
