@@ -1,7 +1,8 @@
 def logged():
+    print("Success!")
     geek = int(input("1.Change password " "2.Log out "))
     if geek == 1:
-        change = input("what you finna change it to? ")
+        change = input("What would you like to change it to? ")
         print("Your password", (change), "has been confirmed")
     if geek == 2:
         print("Logged out")
