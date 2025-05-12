@@ -1,40 +1,68 @@
+users = {
+    "sithLord": "Ancient enimes r us",
+    "d_Vader": "I'm Your Father",
+    "GENERALleia": "May the Force be with you",
+    "grogu": "patu",
+    "there_is_no_try": "Yoda",
+    "MyRey": "I Am All The Jedi",
+    "Luke": "May the Force be with you"
+}
+
 def logged():
     print("Success!")
-    geek = int(input("1.Change password " "2.Log out "))
-    if geek == 1:
-        change = input("What would you like to change it to? ")
-        print("Your password", (change), "has been confirmed")
-    if geek == 2:
-        print("Logged out")
+    while True:
+        try:
+            geek = int(input("1. Change password\n2. Log out\nChoose an option: "))
+            if geek == 1:
+                change = input("What would you like to change your password to? ")
+                print(f"Your password '{change}' has been confirmed.")
+                return
+            elif geek == 2:
+                print("Logged out.")
+                return
+            else:
+                print("Invalid option. Try again.")
+        except ValueError:
+            print("Please enter a valid number.")
 
-
-
-menu = int(input("1.Login " "2.Register " "3.Quit "))
-
-if menu == 1:
-    LogUs = input("Username? ")
-    while LogUs == ("sithLord") or LogUs == ("d_Vader") or LogUs == ("GENERALleia") or LogUs == ("grogu") or LogUs == ("there_is_no_try") or LogUs == ("MyRey") or LogUs == ("Luke"):
-        LogPa = input("Password? ")
-        while LogPa == ("Ancient enimes r us") or LogPa == ("I'm Your Father") or LogPa == ("May the Force be with you") or LogPa == ("patu") or LogPa == ("Yoda") or LogPa == ("I Am All The Jedi") or LogPa == ("May the Force be with you"):
+def login():
+    username = input("Username? ")
+    if username in users:
+        password = input("Password? ")
+        if users[username] == password:
             print("Logged in!")
             logged()
         else:
-            print("WRONG")
+            print("Incorrect password.")
     else:
-        print("WRONG")
+        print("Username not found.")
 
-elif menu == 2:
-    RegUs = input("Username? ")
-    if RegUs == ("sithLord") or RegUs == ("d_Vader") or RegUs == ("GENERALleia") or RegUs == ("grogu") or RegUs == ("there_is_no_try") or RegUs == ("MyRey") or RegUs == ("Luke"):
-        print("Taken")
-    elif input("Password? "):
-        print("Okay!")
+def register():
+    username = input("Choose a username: ")
+    if username in users:
+        print("Username is already taken.")
+    else:
+        password = input("Choose a password: ")
+        users[username] = password
+        print("Registration successful!")
         logged()
 
+def main():
+    while True:
+        try:
+            menu = int(input("1. Login\n2. Register\n3. Quit\nChoose an option: "))
+            if menu == 1:
+                login()
+            elif menu == 2:
+                register()
+            elif menu == 3:
+                print("Terminated.")
+                break
+            else:
+                print("Invalid option. Try again.")
+        except ValueError:
+            print("Please enter a valid number.")
 
-
-
-elif menu == 3:
-    print("Terminated")
-
+if __name__ == "__main__":
+    main()
     
